@@ -4,7 +4,7 @@ from openpyxl import Workbook
 import pandas as pd
 from selenium.webdriver.common.keys import Keys
 from bs4 import BeautifulSoup
-from list import chamions
+from list import champions
 
 import warnings
 warnings.filterwarnings('ignore')
@@ -51,7 +51,7 @@ comment_list = soup.select("yt-formatted-string#content-text")
 
 # id_final = []
 comment_final = []
-append_list = chamions
+append_list = champions
 
 for i in range(len(comment_list)):
     temp_comment = comment_list[i].text
