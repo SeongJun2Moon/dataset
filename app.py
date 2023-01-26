@@ -4,7 +4,7 @@ from openpyxl import Workbook
 import pandas as pd
 from selenium.webdriver.common.keys import Keys
 from bs4 import BeautifulSoup
-from list import champions
+from list import champions, except_words
 
 import warnings
 warnings.filterwarnings('ignore')
@@ -52,6 +52,7 @@ comment_list = soup.select("yt-formatted-string#content-text")
 # id_final = []
 comment_final = []
 append_list = champions
+except_list = except_words
 
 for i in range(len(comment_list)):
     temp_comment = comment_list[i].text
@@ -59,7 +60,7 @@ for i in range(len(comment_list)):
     temp_comment = temp_comment.replace('\t', '')
     temp_comment = temp_comment.replace('    ', '')
     for i in append_list:
-        if i in temp_comment:
+        if i in temp_comment and i not in except_list and temp_comment not in comment_final:
             comment_final.append(temp_comment) # 댓글 내용
 
 pd_data = {"댓글 내용" : comment_final}
